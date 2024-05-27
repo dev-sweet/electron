@@ -1,12 +1,23 @@
-/* eslint-disable react/prop-types */
+import { Link } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const DashboardProduct = ({ product }) => {
   console.log(product);
   const { id, name, img, shortDetails, price, discount } = product;
   const handleDelete = (id) => {
     fetch(`http://localhost:3000/watches/${id}`, {
       method: "DELETE",
-    }).then((res) => console.log(res.json()));
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.id) {
+          toast("Your item deleted successfully");
+        }
+      })
+      .catch((err) => console.log(err));
   };
+
   return (
     <div className="flex items-center">
       <div className="max-w-4/5 my-4 mx-auto bg-white shadow-md rounded-lg overflow-hidden flex">
@@ -28,15 +39,19 @@ const DashboardProduct = ({ product }) => {
             <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
               View
             </button>
-            <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+            <Link
+              to={`edit/${id}`}
+              className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+            >
               Edit
-            </button>
+            </Link>
             <button
               onClick={() => handleDelete(id)}
               className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
             >
               Delete
             </button>
+            <ToastContainer />
           </div>
         </div>
       </div>

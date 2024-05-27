@@ -9,6 +9,7 @@ import About from "../components/About/About";
 import DashboardLaout from "../Layouts/DashboardLaout";
 import Dashboard from "../components/Dashboard/Dashboard";
 import AllProducts from "../components/AllProducts/AllProducts";
+import EditProduct from "../components/EditProduct/EditProduct";
 
 export const router = createBrowserRouter([
   {
@@ -40,7 +41,8 @@ export const router = createBrowserRouter([
       {
         path: "/products/details/:id",
         element: <ProductDetails />,
-        loader: (params) => fetch(`http://localhost:3000/watches/${params}`),
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/watches/${params.id}`),
       },
     ],
   },
@@ -56,6 +58,12 @@ export const router = createBrowserRouter([
         path: "all-products",
         element: <AllProducts />,
         loader: () => fetch(`http://localhost:3000/watches`),
+      },
+      {
+        path: "all-products/edit/:id",
+        element: <EditProduct />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/watches/${params.id}`),
       },
     ],
   },

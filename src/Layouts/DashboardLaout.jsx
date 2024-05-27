@@ -1,6 +1,6 @@
 import { Link, Outlet } from "react-router-dom";
 
-const DashboardLaout = () => {
+const DashboardLaout = ({ id }) => {
   return (
     <div className="flex">
       <div className="bg-base-200 flex flex-col fixed h-full">
@@ -12,6 +12,7 @@ const DashboardLaout = () => {
           <li>
             <Link to="all-products">All Products</Link>
           </li>
+
           <li>
             <Link to="all-products">Shifted Products</Link>
           </li>

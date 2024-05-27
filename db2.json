@@ -1,6 +1,28 @@
 {
   "watches": [
     {
+      "id": "2",
+      "name": "Seiko 5 Sports",
+      "brand": "Seiko",
+      "price": 199,
+      "img": "https://i.ibb.co/ZT9XtYT/watch1.jpg",
+      "details": "The Seiko 5 Sports is a versatile automatic watch with a day/date display and water resistance up to 100 meters, suitable for both casual and formal occasions.",
+      "discount": 10,
+      "watchType": "male watch",
+      "shortDetails": "Automatic movement, day/date display."
+    },
+    {
+      "id": "3",
+      "name": "Casio F91W",
+      "brand": "Casio",
+      "price": 20,
+      "img": "https://i.ibb.co/R7spLND/watch3.jpg",
+      "details": "The Casio F91W is a classic digital watch known for its reliability and affordability, featuring a stopwatch function and daily alarm.",
+      "discount": 5,
+      "watchType": "male watch",
+      "shortDetails": "Digital display, stopwatch."
+    },
+    {
       "id": "4",
       "name": "Garmin Forerunner 45S",
       "brand": "Garmin",
