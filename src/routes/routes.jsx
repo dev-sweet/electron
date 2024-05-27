@@ -10,6 +10,8 @@ import DashboardLaout from "../Layouts/DashboardLaout";
 import Dashboard from "../components/Dashboard/Dashboard";
 import AllProducts from "../components/AllProducts/AllProducts";
 import EditProduct from "../components/EditProduct/EditProduct";
+import AddProduct from "../components/AddProduct/AddProduct";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -52,16 +54,36 @@ export const router = createBrowserRouter([
     children: [
       {
         index: 1,
-        element: <Dashboard />,
+        element: (
+          <PrivateRoute>
+            <Dashboard />
+          </PrivateRoute>
+        ),
       },
       {
         path: "all-products",
-        element: <AllProducts />,
+        element: (
+          <PrivateRoute>
+            <AllProducts />
+          </PrivateRoute>
+        ),
         loader: () => fetch(`http://localhost:3000/watches`),
       },
       {
+        path: "add-product",
+        element: (
+          <PrivateRoute>
+            <AddProduct />
+          </PrivateRoute>
+        ),
+      },
+      {
         path: "all-products/edit/:id",
-        element: <EditProduct />,
+        element: (
+          <PrivateRoute>
+            <EditProduct />
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
           fetch(`http://localhost:3000/watches/${params.id}`),
       },

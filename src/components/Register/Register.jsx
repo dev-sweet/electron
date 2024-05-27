@@ -1,9 +1,31 @@
-import { Link } from "react-router-dom";
-
+import { useContext, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { AuthContext } from "../AuthProvider/AuthProvider";
+import { ToastContainer, toast } from "react-toastify";
 const Register = () => {
+  const { signUpWithEmailAndPassword } = useContext(AuthContext);
+  const [user, setUser] = useState({ email: "", password: "", username: "" });
+  const navigate = useNavigate();
+  const location = useLocation();
+  console.log(location);
+  const handleChange = (e) => {
+    setUser((prevData) => {
+      return { ...prevData, [e.target.name]: e.target.value };
+    });
+  };
+
+  const handleSignIn = (e) => {
+    e.preventDefault();
+    signUpWithEmailAndPassword(user.email, user.password)
+      .then(() => {
+        toast("Account created successfully!");
+        navigate();
+      })
+      .catch((err) => console.log(err));
+  };
   return (
     <div className="min-h-screen flex flex-col items-center justify-center">
-      <form action="" className="w-2/5">
+      <form onSubmit={handleSignIn} action="" className="w-2/5">
         <div className="py-2">
           <label className="input input-bordered flex items-center gap-2">
             <svg
@@ -14,7 +36,13 @@ const Register = () => {
             >
               <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM12.735 14c.618 0 1.093-.561.872-1.139a6.002 6.002 0 0 0-11.215 0c-.22.578.254 1.139.872 1.139h9.47Z" />
             </svg>
-            <input type="text" className="grow" placeholder="Username" />
+            <input
+              onChange={handleChange}
+              name="username"
+              type="text"
+              className="grow"
+              placeholder="Username"
+            />
           </label>
         </div>
         <div className="py-2">
@@ -28,7 +56,13 @@ const Register = () => {
               <path d="M2.5 3A1.5 1.5 0 0 0 1 4.5v.793c.026.009.051.02.076.032L7.674 8.51c.206.1.446.1.652 0l6.598-3.185A.755.755 0 0 1 15 5.293V4.5A1.5 1.5 0 0 0 13.5 3h-11Z" />
               <path d="M15 6.954 8.978 9.86a2.25 2.25 0 0 1-1.956 0L1 6.954V11.5A1.5 1.5 0 0 0 2.5 13h11a1.5 1.5 0 0 0 1.5-1.5V6.954Z" />
             </svg>
-            <input type="text" className="grow" placeholder="Email" />
+            <input
+              onChange={handleChange}
+              name="email"
+              type="text"
+              className="grow"
+              placeholder="Email"
+            />
           </label>
         </div>
         <div className="py-2">
@@ -45,11 +79,20 @@ const Register = () => {
                 clipRule="evenodd"
               />
             </svg>
-            <input type="password" className="grow" placeholder="Password" />
+            <input
+              onChange={handleChange}
+              name="password"
+              type="password"
+              className="grow"
+              placeholder="Password"
+            />
           </label>
         </div>
 
-        <button className="btn btn-success w-full mt-3">Register</button>
+        <button type="submit" className="btn btn-success w-full mt-3">
+          Register
+        </button>
+        <ToastContainer />
       </form>
       <div className="w-2/5">
         <p className="mt-2 text-center">

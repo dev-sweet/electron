@@ -1,9 +1,41 @@
-import { Link } from "react-router-dom";
-
+import { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../AuthProvider/AuthProvider";
+import { ToastContainer, toast } from "react-toastify";
 const Login = () => {
+  const [user, setUser] = useState({ email: "", password: "" });
+  const { loginWithGooglePopUp, loginWithEmailAndPass } =
+    useContext(AuthContext);
+  const navigate = useNavigate();
+  // handle the form data when something changed
+  const handleChange = (e) => {
+    setUser((prevUser) => {
+      return { ...prevUser, [e.target.name]: e.target.value };
+    });
+  };
+
+  // login with email and password
+  const handleLoginWithEmail = (e) => {
+    e.preventDefault();
+    loginWithEmailAndPass(user.email, user.password)
+      .then(() => {
+        toast("Login Success!");
+        navigate("/");
+      })
+      .catch((err) => console.log(err));
+  };
+
+  // login with google popup
+  const handleLoginWithGoogle = () => {
+    loginWithGooglePopUp().then(() => {
+      toast("Login Success!");
+      navigate("/");
+    });
+  };
   return (
     <div className="min-h-screen flex flex-col items-center justify-center">
-      <form action="" className="w-2/5">
+      <h2 className="text-3xl py-5 font-bold text-center">Login</h2>
+      <form action="" onSubmit={handleLoginWithEmail} className="w-2/5">
         <div className="py-2">
           <label className="input input-bordered flex items-center gap-2">
             <svg
@@ -15,7 +47,13 @@ const Login = () => {
               <path d="M2.5 3A1.5 1.5 0 0 0 1 4.5v.793c.026.009.051.02.076.032L7.674 8.51c.206.1.446.1.652 0l6.598-3.185A.755.755 0 0 1 15 5.293V4.5A1.5 1.5 0 0 0 13.5 3h-11Z" />
               <path d="M15 6.954 8.978 9.86a2.25 2.25 0 0 1-1.956 0L1 6.954V11.5A1.5 1.5 0 0 0 2.5 13h11a1.5 1.5 0 0 0 1.5-1.5V6.954Z" />
             </svg>
-            <input type="text" className="grow" placeholder="Email" />
+            <input
+              onChange={handleChange}
+              name="email"
+              type="text"
+              className="grow"
+              placeholder="Email"
+            />
           </label>
         </div>
         <div className="py-2">
@@ -32,17 +70,28 @@ const Login = () => {
                 clipRule="evenodd"
               />
             </svg>
-            <input type="password" className="grow" placeholder="Password" />
+            <input
+              onChange={handleChange}
+              name="password"
+              type="password"
+              className="grow"
+              placeholder="Password"
+            />
           </label>
         </div>
 
-        <button className="btn btn-success w-full mt-3">Login</button>
+        <button type="submit" className="btn btn-success w-full mt-3">
+          Login
+        </button>
       </form>
       <div className="w-2/5">
         <div className="divider mt-4">OR</div>
-        <button className="btn w-full">Login with Google</button>
+        <button className="btn w-full" onClick={handleLoginWithGoogle}>
+          Login with Google
+        </button>
+        <ToastContainer />
         <p className="mt-2 text-center">
-          Don't have an account?{" "}
+          Don not have an account?{" "}
           <Link to="/register" className="text-blue-400">
             Register Here
           </Link>

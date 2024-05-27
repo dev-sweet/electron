@@ -1,30 +1,8 @@
 {
   "watches": [
     {
-      "id": "4",
-      "name": "Garmin Forerunner 45S",
-      "brand": "Garmin",
-      "price": 199,
-      "img": "https://i.ibb.co/GxMLPtW/watch11.jpg",
-      "details": "The Garmin Forerunner 45S is a GPS running watch with heart rate monitoring and safety features like incident detection and assistance.",
-      "discount": 10,
-      "watchType": "female watch",
-      "shortDetails": "GPS running watch, heart rate monitoring."
-    },
-    {
-      "id": "5",
-      "name": "Fossil Gen 5",
-      "brand": "Fossil",
-      "price": 299,
-      "img": "https://i.ibb.co/rMHCqd4/watch6.jpg",
-      "details": "The Fossil Gen 5 is a smartwatch powered by Wear OS by Google, offering features like heart rate tracking, NFC payments, and customizable dials.",
-      "discount": 25,
-      "watchType": "male watch",
-      "shortDetails": "Smartwatch, Wear OS."
-    },
-    {
       "id": "6",
-      "name": "Timex Weekender",
+      "name": "Timex Weekenderr",
       "brand": "Michael Kors",
       "price": 350,
       "img": "https://i.ibb.co/FwQ2GH3/watch4.jpg",

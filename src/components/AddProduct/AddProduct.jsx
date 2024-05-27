@@ -1,48 +1,51 @@
 import { useState } from "react";
-import { useLoaderData } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const EditProduct = () => {
-  const product = useLoaderData();
-  const [formData, setFormData] = useState({ ...product });
+const AddProduct = () => {
+  const [product, setProduct] = useState({
+    id: "",
+    name: "",
+    brand: "",
+    shortDetails: "",
+    watchType: "",
+    img: "",
+    price: "",
+    discount: "",
+    details: "",
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    const userConfirmed = confirm("Do you want to update this product?");
-    if (userConfirmed) {
-      fetch(`http://localhost:3000/watches/${product.id}`, {
-        method: "PATCH",
-        headers: { "Content-type": "application/json" },
-        body: JSON.stringify(formData),
+    fetch(`http://localhost:3000/watches`, {
+      method: "POST",
+      headers: { "Content-type": "application/json" },
+      body: JSON.stringify(product),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data) {
+          toast("Your product added successfully!");
+        }
       })
-        .then((res) => res.json())
-        .then((data) => {
-          if (data) {
-            toast("Your product updated successfully!");
-          }
-        })
-        .catch((err) => console.log(err));
-    }
+      .catch((err) => console.log(err));
   };
 
   const handleChange = (e) => {
-    console.log(formData);
-    setFormData((prevData) => {
+    setProduct((prevData) => {
       return { ...prevData, [e.target.name]: e.target.value };
     });
   };
   return (
     <div className="max-w-2xl mx-auto p-8 bg-white rounded-lg shadow-md">
-      <h2 className="text-3xl my-5 text-center font-bold">Edit Product</h2>
+      <h2 className="text-3xl my-5 text-center font-bold">Add a Product</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
           <label className="block text-gray-700">ID:</label>
           <input
             type="text"
             name="id"
-            value={formData.id}
+            value={product.id}
             onChange={handleChange}
             className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
           />
@@ -52,7 +55,7 @@ const EditProduct = () => {
           <input
             type="text"
             name="name"
-            value={formData.name}
+            value={product.name}
             onChange={handleChange}
             className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
           />
@@ -62,7 +65,7 @@ const EditProduct = () => {
           <input
             type="text"
             name="img"
-            value={formData.img}
+            value={product.img}
             onChange={handleChange}
             className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
           />
@@ -71,7 +74,7 @@ const EditProduct = () => {
           <label className="block text-gray-700">Short Details:</label>
           <textarea
             name="shortDetails"
-            value={formData.shortDetails}
+            value={product.shortDetails}
             onChange={handleChange}
             className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
           />
@@ -81,7 +84,7 @@ const EditProduct = () => {
           <input
             type="text"
             name="price"
-            value={formData.price}
+            value={product.price}
             onChange={handleChange}
             className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
           />
@@ -91,7 +94,7 @@ const EditProduct = () => {
           <input
             type="text"
             name="discount"
-            value={formData.discount}
+            value={product.discount}
             onChange={handleChange}
             className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
           />
@@ -101,7 +104,7 @@ const EditProduct = () => {
           <input
             type="text"
             name="brand"
-            value={formData.brand}
+            value={product.brand}
             onChange={handleChange}
             className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
           />
@@ -111,7 +114,7 @@ const EditProduct = () => {
           <input
             type="text"
             name="watchType"
-            value={formData.watchType}
+            value={product.watchType}
             onChange={handleChange}
             className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
           />
@@ -120,7 +123,7 @@ const EditProduct = () => {
           <label className="block text-gray-700">Details:</label>
           <textarea
             name="details"
-            value={formData.details}
+            value={product.details}
             onChange={handleChange}
             className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
           />
@@ -129,7 +132,7 @@ const EditProduct = () => {
           type="submit"
           className="w-full px-4 py-2 mt-4 font-semibold text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:bg-blue-700"
         >
-          Save
+          ADD
         </button>
         <ToastContainer />
       </form>
@@ -137,4 +140,4 @@ const EditProduct = () => {
   );
 };
 
-export default EditProduct;
+export default AddProduct;

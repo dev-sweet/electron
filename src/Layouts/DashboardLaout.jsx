@@ -12,6 +12,9 @@ const DashboardLaout = ({ id }) => {
           <li>
             <Link to="all-products">All Products</Link>
           </li>
+          <li>
+            <Link to="add-product">Add Product</Link>
+          </li>
 
           <li>
             <Link to="all-products">Shifted Products</Link>

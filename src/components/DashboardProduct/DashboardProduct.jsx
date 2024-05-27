@@ -3,19 +3,21 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const DashboardProduct = ({ product }) => {
-  console.log(product);
   const { id, name, img, shortDetails, price, discount } = product;
   const handleDelete = (id) => {
-    fetch(`http://localhost:3000/watches/${id}`, {
-      method: "DELETE",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.id) {
-          toast("Your item deleted successfully");
-        }
+    const userConfirmed = confirm("Do you want to delete this product?");
+    if (userConfirmed) {
+      fetch(`http://localhost:3000/watches/${id}`, {
+        method: "DELETE",
       })
-      .catch((err) => console.log(err));
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.id) {
+            toast("Your product deleted successfully!");
+          }
+        })
+        .catch((err) => console.log(err));
+    }
   };
 
   return (
