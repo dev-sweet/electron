@@ -21,7 +21,6 @@ export const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
-        loader: () => fetch("http://localhost:3000/watches"),
       },
       {
         path: "/login",
@@ -67,7 +66,6 @@ export const router = createBrowserRouter([
             <AllProducts />
           </PrivateRoute>
         ),
-        loader: () => fetch(`http://localhost:3000/watches`),
       },
       {
         path: "add-product",

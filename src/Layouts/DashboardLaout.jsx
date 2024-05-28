@@ -1,6 +1,17 @@
+import { useContext } from "react";
 import { Link, Outlet } from "react-router-dom";
+import { AuthContext } from "../components/AuthProvider/AuthProvider";
+import { ToastContainer, toast } from "react-toastify";
 
-const DashboardLaout = ({ id }) => {
+const DashboardLaout = () => {
+  const { logOut } = useContext(AuthContext);
+  const handleLogout = () => {
+    logOut()
+      .then(() => {
+        toast("Logout Success!");
+      })
+      .catch((err) => console.log(err));
+  };
   return (
     <div className="flex">
       <div className="bg-base-200 flex flex-col fixed h-full">
@@ -20,9 +31,10 @@ const DashboardLaout = ({ id }) => {
             <Link to="all-products">Shifted Products</Link>
           </li>
           <li>
-            <Link to="all-products">Profile</Link>
+            <button onClick={handleLogout}>Logout</button>
           </li>
         </ul>
+        <ToastContainer />
       </div>
       <div className="flex-1 overflow-y-auto">
         <Outlet />

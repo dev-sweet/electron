@@ -22,7 +22,7 @@ const DashboardProduct = ({ product }) => {
 
   return (
     <div className="flex items-center">
-      <div className="max-w-4/5 my-4 mx-auto bg-white shadow-md rounded-lg overflow-hidden flex">
+      <div className="w-2/5 my-4 mx-auto bg-white shadow-md rounded-lg overflow-hidden flex">
         <img className="w-1/3 h-auto object-cover" src={img} alt={name} />
         <div className="w-2/3 p-6 flex flex-col justify-between">
           <div>

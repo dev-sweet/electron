@@ -17,18 +17,33 @@ const AddProduct = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch(`http://localhost:3000/watches`, {
-      method: "POST",
-      headers: { "Content-type": "application/json" },
-      body: JSON.stringify(product),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data) {
-          toast("Your product added successfully!");
-        }
+    const isConfirmed = confirm("Do you want to add this product?");
+
+    if (isConfirmed) {
+      fetch(`http://localhost:3000/watches`, {
+        method: "POST",
+        headers: { "Content-type": "application/json" },
+        body: JSON.stringify(product),
       })
-      .catch((err) => console.log(err));
+        .then((res) => res.json())
+        .then((data) => {
+          if (data) {
+            toast("Your product added successfully!");
+            setProduct({
+              id: "",
+              name: "",
+              brand: "",
+              shortDetails: "",
+              watchType: "",
+              img: "",
+              price: "",
+              discount: "",
+              details: "",
+            });
+          }
+        })
+        .catch((err) => console.log(err));
+    }
   };
 
   const handleChange = (e) => {

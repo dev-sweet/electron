@@ -1,9 +1,14 @@
-import { useLoaderData } from "react-router-dom";
 import DashboardProduct from "../DashboardProduct/DashboardProduct";
+import { useEffect, useState } from "react";
 
 const AllProducts = () => {
-  const products = useLoaderData();
-  console.log(products);
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:3000/watches")
+      .then((res) => res.json())
+      .then((data) => setProducts(data));
+  }, [products]);
 
   return (
     <div className="text-center">
