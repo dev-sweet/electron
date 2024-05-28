@@ -12,6 +12,17 @@
       "shortDetails": "Automatic movement, day/date display."
     },
     {
+      "id": "1",
+      "name": "Timex Weekender",
+      "brand": "Michael Kors",
+      "price": 350,
+      "img": "https://i.ibb.co/FwQ2GH3/watch4.jpg",
+      "details": "The Michael Kors Access Bradshaw 2 is a stylish smartwatch with built-in GPS, heart rate tracking, and Google Assistant integration.",
+      "discount": 15,
+      "watchType": "female watch",
+      "shortDetails": "Stylish smartwatch, GPS."
+    },
+    {
       "id": "3",
       "name": "Casio F91W",
       "brand": "Casio",
@@ -43,6 +54,17 @@
       "discount": 25,
       "watchType": "male watch",
       "shortDetails": "Smartwatch, Wear OS."
+    },
+    {
+      "id": "6",
+      "name": "Timex Weekender",
+      "brand": "Michael Kors",
+      "price": 350,
+      "img": "https://i.ibb.co/FwQ2GH3/watch4.jpg",
+      "details": "The Michael Kors Access Bradshaw 2 is a stylish smartwatch with built-in GPS, heart rate tracking, and Google Assistant integration.",
+      "discount": 15,
+      "watchType": "female watch",
+      "shortDetails": "Stylish smartwatch, GPS."
     }
   ]
 }
