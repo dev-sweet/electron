@@ -1,9 +1,14 @@
 import { useContext } from "react";
 import { AuthContext } from "../AuthProvider/AuthProvider";
+import { ToastContainer, toast } from "react-toastify";
 
 const Dashboard = () => {
-  const { userInfo } = useContext(AuthContext);
-  console.log(userInfo);
+  const { userInfo, logOut } = useContext(AuthContext);
+  const handleLogOut = () => {
+    logOut().then(() => {
+      toast("Logout Success!");
+    });
+  };
   return (
     <div>
       <h2 className="text-4xl text-center">Dashboard</h2>
@@ -24,11 +29,19 @@ const Dashboard = () => {
         <div className="border-t border-gray-200">
           <div className="p-4">
             <h3 className="text-gray-600 text-sm">Member since</h3>
-            <p className="text-gray-800">
-              {new Date(userInfo.creationTime).toLocaleDateString()}
-            </p>
+            <p className="text-gray-800">{userInfo.creationTime}</p>
+            {console.log(userInfo)}
+          </div>
+          <div className="text-center py-5">
+            <button
+              className="btn btn-red-100 text-center mx-auto"
+              onClick={handleLogOut}
+            >
+              Logout
+            </button>
           </div>
         </div>
+        <ToastContainer />
       </div>
     </div>
   );

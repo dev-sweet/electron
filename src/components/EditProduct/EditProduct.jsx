@@ -34,7 +34,7 @@ const EditProduct = () => {
     });
   };
   return (
-    <div className="max-w-2xl mx-auto p-8 bg-white rounded-lg shadow-md">
+    <div className="my-10 max-w-2xl mx-auto p-8 bg-white border rounded-lg shadow-md">
       <h2 className="text-3xl my-5 text-center font-bold">Edit Product</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">

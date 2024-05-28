@@ -33,7 +33,7 @@ const Login = () => {
     });
   };
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center">
+    <div className="py-10 my-20 flex flex-col items-center justify-center">
       <h2 className="text-3xl py-5 font-bold text-center">Login</h2>
       <form action="" onSubmit={handleLoginWithEmail} className="w-2/5">
         <div className="py-2">
