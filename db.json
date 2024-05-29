@@ -65,6 +65,17 @@
       "discount": 15,
       "watchType": "female watch",
       "shortDetails": "Stylish smartwatch, GPS."
+    },
+    {
+      "id": "8",
+      "name": "Garmin Forerunner 45S",
+      "brand": "Garmin",
+      "shortDetails": "displayProducts",
+      "watchType": "Hunky Funcky",
+      "img": "https://i.ibb.co/GxMLPtW/watch11.jpg",
+      "price": "444",
+      "discount": "-100%",
+      "details": "SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS"
     }
   ]
 }

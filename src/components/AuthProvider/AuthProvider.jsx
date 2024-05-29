@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 import {
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
@@ -14,11 +14,11 @@ export const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
   const [userInfo, setUserInfo] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  const provider = new GoogleAuthProvider();
+  const googleProvider = new GoogleAuthProvider();
   const auth = useAuth();
 
   const loginWithGooglePopUp = () => {
-    return signInWithPopup(auth, provider);
+    return signInWithPopup(auth, googleProvider);
   };
   const signUpWithEmailAndPassword = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);
@@ -34,6 +34,7 @@ const AuthProvider = ({ children }) => {
     setUserInfo(user);
     setIsLoading(false);
   });
+
   return (
     <AuthContext.Provider
       value={{
