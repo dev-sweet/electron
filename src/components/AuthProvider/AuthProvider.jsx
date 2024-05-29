@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import {
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
@@ -13,6 +13,7 @@ import useAuth from "../../hooks/getAuth";
 export const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
   const [userInfo, setUserInfo] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
   const provider = new GoogleAuthProvider();
   const auth = useAuth();
 
@@ -29,7 +30,10 @@ const AuthProvider = ({ children }) => {
   const logOut = () => {
     return signOut(auth);
   };
-  onAuthStateChanged(auth, (user) => setUserInfo(user));
+  onAuthStateChanged(auth, (user) => {
+    setUserInfo(user);
+    setIsLoading(false);
+  });
   return (
     <AuthContext.Provider
       value={{
@@ -37,6 +41,7 @@ const AuthProvider = ({ children }) => {
         signUpWithEmailAndPassword,
         loginWithEmailAndPass,
         logOut,
+        isLoading,
         userInfo,
       }}
     >

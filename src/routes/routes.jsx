@@ -12,11 +12,13 @@ import AllProducts from "../components/AllProducts/AllProducts";
 import EditProduct from "../components/EditProduct/EditProduct";
 import AddProduct from "../components/AddProduct/AddProduct";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import ErrorPage from "../components/ErrorPage/ErrorPage";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/",

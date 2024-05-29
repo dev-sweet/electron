@@ -26,10 +26,6 @@ const DashboardLaout = () => {
           <li>
             <Link to="add-product">Add Product</Link>
           </li>
-
-          <li>
-            <Link to="all-products">Shifted Products</Link>
-          </li>
           <li>
             <button onClick={handleLogout}>Logout</button>
           </li>
