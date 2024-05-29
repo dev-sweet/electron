@@ -38,9 +38,12 @@ const DashboardProduct = ({ product }) => {
             </div>
           </div>
           <div className="mt-4 flex justify-end space-x-4">
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            <Link
+              to={`/products/details/${id}`}
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            >
               View
-            </button>
+            </Link>
             <Link
               to={`edit/${id}`}
               className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
