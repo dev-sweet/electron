@@ -5,14 +5,33 @@ import "react-toastify/dist/ReactToastify.css";
 
 const EditProduct = () => {
   const product = useLoaderData();
-  const [formData, setFormData] = useState({ ...product });
+  const {
+    name,
+    brand,
+    price,
+    img,
+    details,
+    discount,
+    watchType,
+    shortDetails,
+  } = product;
+  const [formData, setFormData] = useState({
+    name,
+    brand,
+    price,
+    img,
+    details,
+    discount,
+    watchType,
+    shortDetails,
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const userConfirmed = confirm("Do you want to update this product?");
     if (userConfirmed) {
-      fetch(`http://localhost:3000/watches/${product.id}`, {
+      fetch(`http://localhost:3000/products/update/${product._id}`, {
         method: "PATCH",
         headers: { "Content-type": "application/json" },
         body: JSON.stringify(formData),
@@ -28,7 +47,6 @@ const EditProduct = () => {
   };
 
   const handleChange = (e) => {
-    console.log(formData);
     setFormData((prevData) => {
       return { ...prevData, [e.target.name]: e.target.value };
     });
@@ -37,16 +55,6 @@ const EditProduct = () => {
     <div className="my-10 max-w-2xl mx-auto p-8 bg-white border rounded-lg shadow-md">
       <h2 className="text-3xl my-5 text-center font-bold">Edit Product</h2>
       <form onSubmit={handleSubmit}>
-        <div className="mb-4">
-          <label className="block text-gray-700">ID:</label>
-          <input
-            type="text"
-            name="id"
-            value={formData.id}
-            onChange={handleChange}
-            className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
-          />
-        </div>
         <div className="mb-4">
           <label className="block text-gray-700">Name:</label>
           <input

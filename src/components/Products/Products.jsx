@@ -1,8 +1,14 @@
-import { useLoaderData } from "react-router-dom";
+import { useEffect, useState } from "react";
 import SingleProduct from "../Home/SingleProduct/SingleProduct";
 
 const Products = () => {
-  const watches = useLoaderData();
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:3000/products")
+      .then((res) => res.json())
+      .then((data) => setProducts(data));
+  }, []);
 
   return (
     <>
@@ -10,8 +16,8 @@ const Products = () => {
         Our Products
       </h1>
       <div className="flex item-center justify-center flex-wrap gap-5">
-        {watches?.map((watch) => (
-          <SingleProduct key={watch.id} watch={watch} />
+        {products?.map((product) => (
+          <SingleProduct key={product._id} product={product} />
         ))}
       </div>
     </>

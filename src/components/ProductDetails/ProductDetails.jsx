@@ -1,7 +1,10 @@
+// import { useEffect } from "react";
 import { useLoaderData } from "react-router-dom";
 
 const ProductDetails = () => {
-  const product = useLoaderData();
+  console.log("product details loade");
+  const { product } = useLoaderData();
+  console.log(product);
   const {
     name,
     brand,

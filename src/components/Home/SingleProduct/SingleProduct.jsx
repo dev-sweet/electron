@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 
 /* eslint-disable react/prop-types */
-const SingleProduct = ({ watch }) => {
-  const { name, id, price, img, brand, discount, shortDetails } = watch;
+const SingleProduct = ({ product }) => {
+  const { name, _id, price, img, brand, discount, shortDetails } = product;
   return (
     <div className="card w-96 bg-sky-100 shadow-xl border-md border-red-100">
       <figure>
@@ -19,7 +19,7 @@ const SingleProduct = ({ watch }) => {
           <div className="badge badge-primary">{brand}</div>
         </div>
         <div className="card-actions justify-center">
-          <Link to={`/products/details/${id}`} className="btn btn-primary mt-3">
+          <Link to={`/products/${_id}`} className="btn btn-primary mt-3">
             See Details
           </Link>
         </div>

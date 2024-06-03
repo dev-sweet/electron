@@ -4,7 +4,6 @@ import "react-toastify/dist/ReactToastify.css";
 
 const AddProduct = () => {
   const [product, setProduct] = useState({
-    id: "",
     name: "",
     brand: "",
     shortDetails: "",
@@ -20,7 +19,7 @@ const AddProduct = () => {
     const isConfirmed = confirm("Do you want to add this product?");
 
     if (isConfirmed) {
-      fetch(`http://localhost:3000/watches`, {
+      fetch(`http://localhost:3000/products`, {
         method: "POST",
         headers: { "Content-type": "application/json" },
         body: JSON.stringify(product),
@@ -30,7 +29,6 @@ const AddProduct = () => {
           if (data) {
             toast("Your product added successfully!");
             setProduct({
-              id: "",
               name: "",
               brand: "",
               shortDetails: "",
@@ -53,18 +51,10 @@ const AddProduct = () => {
   };
   return (
     <div className="max-w-2xl mx-auto p-8 bg-white rounded-lg shadow-md">
-      <h2 className="text-3xl my-5 text-center font-bold">Add a Product</h2>
+      <h2 className="text-3xl max-h-screen my-5 text-center font-bold">
+        Add a Product
+      </h2>
       <form onSubmit={handleSubmit}>
-        <div className="mb-4">
-          <label className="block text-gray-700">ID:</label>
-          <input
-            type="text"
-            name="id"
-            value={product.id}
-            onChange={handleChange}
-            className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
-          />
-        </div>
         <div className="mb-4">
           <label className="block text-gray-700">Name:</label>
           <input

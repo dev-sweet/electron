@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const Home = () => {
   const [products, setProducts] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:3000/watches")
+    fetch("http://localhost:3000/products")
       .then((res) => res.json())
       .then((data) => {
         setProducts(data);
@@ -17,8 +17,8 @@ const Home = () => {
         Our Latest Products
       </h1>
       <div className="flex item-center justify-center flex-wrap gap-5">
-        {products?.slice(0, 6).map((watch) => (
-          <SingleProduct key={watch.id} watch={watch} />
+        {products?.slice(0, 6).map((product) => (
+          <SingleProduct key={product._id} product={product} />
         ))}
       </div>
       <div className="text-center mt-5">

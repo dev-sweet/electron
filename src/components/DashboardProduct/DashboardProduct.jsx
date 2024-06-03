@@ -3,11 +3,11 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const DashboardProduct = ({ product }) => {
-  const { id, name, img, shortDetails, price, discount } = product;
+  const { _id, name, img, shortDetails, price, discount } = product;
   const handleDelete = (id) => {
     const userConfirmed = confirm("Do you want to delete this product?");
     if (userConfirmed) {
-      fetch(`http://localhost:3000/watches/${id}`, {
+      fetch(`http://localhost:3000/products/delete/${id}`, {
         method: "DELETE",
       })
         .then((res) => res.json())
@@ -39,19 +39,19 @@ const DashboardProduct = ({ product }) => {
           </div>
           <div className="mt-4 flex justify-end space-x-4">
             <Link
-              to={`/products/details/${id}`}
+              to={`/products/${_id}`}
               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
             >
               View
             </Link>
             <Link
-              to={`edit/${id}`}
+              to={`edit/${_id}`}
               className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
             >
               Edit
             </Link>
             <button
-              onClick={() => handleDelete(id)}
+              onClick={() => handleDelete(_id)}
               className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
             >
               Delete

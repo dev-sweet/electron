@@ -5,10 +5,10 @@ const AllProducts = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3000/watches")
+    fetch("http://localhost:3000/products")
       .then((res) => res.json())
       .then((data) => setProducts(data));
-  }, [products]);
+  }, []);
 
   return (
     <div className="text-center">
@@ -20,7 +20,7 @@ const AllProducts = () => {
         </h2>
       )}
       {products.map((product) => (
-        <DashboardProduct key={product.id} product={product} />
+        <DashboardProduct key={product._id} product={product} />
       ))}
     </div>
   );
