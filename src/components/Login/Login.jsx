@@ -6,6 +6,7 @@ const Login = () => {
   const [user, setUser] = useState({ email: "", password: "" });
   const { loginWithGooglePopUp, loginWithEmailAndPass } =
     useContext(AuthContext);
+  const { userInfo: loggedUser } = useContext(AuthContext);
   const navigate = useNavigate();
   // handle the form data when something changed
   const handleChange = (e) => {
@@ -27,11 +28,33 @@ const Login = () => {
 
   // login with google popup
   const handleLoginWithGoogle = () => {
-    loginWithGooglePopUp().then(() => {
-      toast("Login Success!");
-      navigate("/");
+    loginWithGooglePopUp().then((data) => {
+      const loggedUser = data.user;
+      if (loggedUser?.email) {
+        const user = {
+          name: loggedUser.displayName,
+          email: loggedUser.email,
+          img: loggedUser.photoURL,
+        };
+
+        // push user to userCollection
+        fetch("http://localhost:3000/users", {
+          method: "POST",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify(user),
+        })
+          .then((res) => res.json())
+          .then(() => {
+            toast("Login Success!");
+            navigate("/");
+          });
+        console.log(user);
+      }
     });
   };
+
   return (
     <div className="py-10 my-20 flex flex-col items-center justify-center">
       <h2 className="text-3xl py-5 font-bold text-center">Login</h2>

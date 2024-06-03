@@ -12,8 +12,8 @@ const DashboardProduct = ({ product }) => {
       })
         .then((res) => res.json())
         .then((data) => {
-          if (data.id) {
-            toast("Your product deleted successfully!");
+          if (data._id) {
+            toast.success("Your product deleted successfully!");
           }
         })
         .catch((err) => console.log(err));
